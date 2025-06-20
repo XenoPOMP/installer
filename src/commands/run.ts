@@ -33,6 +33,7 @@ export default class Run extends Command {
                 xtodoPath
             );
 
+            // Build XToDo
               try {
                   await sh(`cd ${xtodoPath} && xcodebuild -target XToDo`)
                   // eslint-disable-next-line @typescript-eslint/no-explicit-any
