@@ -6,7 +6,7 @@ import {v4 as uuid} from "uuid";
 import {createDir} from "./creation.ts";
 
 export async function doWorkInTempFolder(
-    promise: (path?: string) => Promise<void>
+    promise: (path: string) => Promise<void>
 ) {
     // This folder is temporary in your system
     const rootTempDirPath = os.tmpdir()

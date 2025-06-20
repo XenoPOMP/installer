@@ -3,6 +3,7 @@ import os from "node:os";
 import {GitCloneOptions} from "../types/index.ts";
 import {sh} from "./shell.js";
 
+// eslint-disable-next-line unicorn/no-static-only-class
 export class PlatformSpecific {
     static gitClone(
         repoUrl: string,
@@ -14,7 +15,7 @@ export class PlatformSpecific {
         sh(script)
     }
 
-    private static platform() {
+    static platform() {
         return os.platform()
     }
 }
