@@ -1,6 +1,6 @@
 import {Command} from '@oclif/core'
 
-import {doWorkInTempFolder, sh} from "../utils/index.ts";
+import {doWorkInTempFolder, sh, Stepper} from "../utils/index.ts";
 
 export default class Run extends Command {
   static override description = 'describe the command here'
@@ -18,7 +18,9 @@ export default class Run extends Command {
     const {args, flags} = await this.parse(Run)
 
     await doWorkInTempFolder(async (path) => {
-      this.log(path)
+      await new Stepper()
+          .step('🛠️ Installing XCode plugins...', () => {})
+          .execute()
     })
   }
 }
