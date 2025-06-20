@@ -23,6 +23,7 @@
     "eslint": "^9",
     "eslint-config-oclif": "^6",
     "eslint-config-prettier": "^10",
+    "esno": "^4.8.0",
     "mocha": "^10",
     "oclif": "^4",
     "shx": "^0.3.3",
@@ -61,6 +62,7 @@
   },
   "repository": "XenoPOMP/installer",
   "scripts": {
+    "dev": "esno ./bin/dev.js",
     "build": "shx rm -rf dist && tsc -b",
     "lint": "eslint",
     "postpack": "shx rm -f oclif.manifest.json",
