@@ -1,5 +1,6 @@
-import {Command} from '@oclif/core'
+import {Command, Errors} from '@oclif/core'
 import path from 'node:path'
+import c from 'ansi-colors'
 
 import {createDir, doWorkInTempFolder, PlatformSpecific, sh, Stepper} from "../utils/index.ts";
 
@@ -32,8 +33,14 @@ export default class Run extends Command {
                 xtodoPath
             );
 
-            // Build XCode project
-            await sh(`cd ${xtodoPath} && xcodebuild -target XToDo`)
+              try {
+                  await sh(`cd ${xtodoPath} && xcodebuild -target XToDo`)
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              } catch (error: any) {
+                  if ('code' in error && error.code === 65) {
+                      console.log(`${c.yellow('warning')} MACOSX_DEPLOYMENT_TARGET is lower, than minimal XCode requirements. XToDo Plugin may be built wrong.`)
+                  }
+              }
           }, {
             skip: PlatformSpecific.platform() !== 'darwin'
           })
