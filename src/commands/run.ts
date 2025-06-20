@@ -1,7 +1,6 @@
 import {Command} from '@oclif/core'
-import os from 'node:os'
 
-import {doWorkInTempFolder} from "../utils/index.ts";
+import {doWorkInTempFolder, sh} from "../utils/index.ts";
 
 export default class Run extends Command {
   static override description = 'describe the command here'
