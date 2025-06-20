@@ -27,12 +27,13 @@ export default class Run extends Command {
             await createDir(pluginsPath)
             await createDir(xtodoPath)
 
-            PlatformSpecific.gitClone(
+            await PlatformSpecific.gitClone(
                 'https://github.com/trawor/XToDo.git',
                 xtodoPath
             );
-            // Build XToDo
-            //   sh(`cd ${xtodoPath} && xcodebuild -target XToDo`)
+
+            // Build XCode project
+            await sh(`cd ${xtodoPath} && xcodebuild -target XToDo`)
           }, {
             skip: PlatformSpecific.platform() !== 'darwin'
           })

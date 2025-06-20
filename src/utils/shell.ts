@@ -6,7 +6,12 @@ import execSh from 'exec-sh';
  * @example
  * sh(`cd ${fetchedPath} && yarn remove ${depsChoice.join(' ')}`);
  */
-export function sh(cmd: string) {
+export function shSync(cmd: string) {
     // @ts-expect-error wrong library types
     execSh(cmd);
+}
+
+export async function sh(cmd: string) {
+    // @ts-expect-error wrong library types
+    await execSh.promise(cmd)
 }
